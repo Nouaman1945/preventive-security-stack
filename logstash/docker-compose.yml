@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  logstash:
+    image: opensearchproject/logstash-oss-with-opensearch-output-plugin:8.9.0
+    container_name: logstash
+    restart: unless-stopped
+    networks:
+      - secstack
+    ports:
+      - "5044:5044"    # Beats input
+      - "9600:9600"    # Monitoring API
+    volumes:
+      - ./logs:/var/log/logstash
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml:ro
+    environment:
+      - LS_JAVA_OPTS=-Xms1g -Xmx1g
+networks:
+  secstack:
+    external: true
