@@ -29,12 +29,19 @@ The architecture is containerized using **Docker** to simplify deployment and en
 
 ---
 
-## 🛠️ Deployment (Docker)
+## 🧠 Why Sysmon is Essential
 
-> ⚠️ Prerequisite: Docker & Docker Compose installed.
+**Sysmon (System Monitor)** is a crucial component in this stack. It is responsible for collecting detailed event logs from the Windows endpoint — including process creation, network connections, registry changes, and file modifications — which are then analyzed by Wazuh.
 
-Clone the repository:
+Without Sysmon, you won’t capture rich behavioral data necessary for meaningful threat detection and enrichment.
 
-```bash
-git clone https://github.com/Nouaman1945/preventive-security-stack.git
-cd preventive-security-stack
+---
+
+## 🏁 Installing Sysmon on Windows
+
+1. Download Sysmon from the official [Sysinternals site](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
+2. Download a configuration file (you can use [SwiftOnSecurity's sysmon-config](https://github.com/SwiftOnSecurity/sysmon-config) or write your own)
+3. Open CMD as Administrator and run:
+
+```cmd
+sysmon64.exe -accepteula -i sysmonconfig.xml
