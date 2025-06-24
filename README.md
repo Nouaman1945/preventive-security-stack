@@ -45,3 +45,14 @@ Without Sysmon, you won’t capture rich behavioral data necessary for meaningfu
 
 ```cmd
 sysmon64.exe -accepteula -i sysmonconfig.xml
+
+
+Access components:
+
+Wazuh Dashboard → https://localhost:5601
+admin:SecretPassword
+
+MISP Web UI → https://localhost:8443
+admin@admin.test:admin
+
+Logstash is headless and runs in the background
